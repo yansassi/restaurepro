@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Clock, Award, ArrowRight, Sparkles } from 'lucide-react';
+import ImageComparisonSlider from './ImageComparisonSlider';
 
 interface HeroProps {
   onStartClick: () => void;
@@ -72,50 +73,23 @@ const Hero = ({ onStartClick }: HeroProps) => {
           </p>
         </div>
 
-        {/* Before/After Section - Redesigned */}
+        {/* Interactive Before/After Comparison */}
         <div className="relative">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Veja a <span className="text-blue-600">Transformação</span>
             </h2>
             <p className="text-lg text-gray-600">
-              Resultados reais de nossos clientes
+              Arraste para ver o resultado • Exemplo real de cliente
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="group relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-              <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl">
-                <div className="bg-gradient-to-r from-red-500 to-orange-500 px-6 py-3">
-                  <span className="text-white font-bold text-sm tracking-wide">ANTES</span>
-                </div>
-                <div className="p-6">
-                  <img 
-                    src="/fotoantiga.jpg" 
-                    alt="Foto antiga antes da restauração" 
-                    className="w-full h-80 object-cover rounded-xl"
-                  />
-                </div>
-              </div>
-            </div>
-            
-            <div className="group relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-              <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl">
-                <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3">
-                  <span className="text-white font-bold text-sm tracking-wide">DEPOIS</span>
-                </div>
-                <div className="p-6">
-                  <img 
-                    src="/restaurada.jpg" 
-                    alt="Foto restaurada depois do tratamento" 
-                    className="w-full h-80 object-cover rounded-xl"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <ImageComparisonSlider
+            beforeImage="/fotoantiga.jpg"
+            afterImage="/restaurada.jpg"
+            beforeLabel="ANTES"
+            afterLabel="DEPOIS"
+          />
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-4xl mx-auto">
