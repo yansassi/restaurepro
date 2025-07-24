@@ -1,13 +1,15 @@
 import React from 'react';
 import { CheckCircle, Clock, Mail, MessageCircle } from 'lucide-react';
 import { CustomerData } from './CustomerForm';
+import { Plan } from '../types/Plan';
 
 interface SuccessProps {
   customerData: CustomerData;
+  selectedPlan: Plan;
   orderNumber: string;
 }
 
-const Success = ({ customerData, orderNumber }: SuccessProps) => {
+const Success = ({ customerData, selectedPlan, orderNumber }: SuccessProps) => {
   return (
     <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -26,6 +28,9 @@ const Success = ({ customerData, orderNumber }: SuccessProps) => {
             <p className="text-green-800 font-semibold mb-2">
               Número do pedido: #{orderNumber}
             </p>
+            <p className="text-blue-800 font-medium mb-2">
+              Plano: {selectedPlan.name} • {selectedPlan.images} {selectedPlan.images === 1 ? 'foto' : 'fotos'} • R$ {selectedPlan.price},00
+            </p>
             <p className="text-green-700 font-medium">
               ✅ Pagamento confirmado com sucesso!
             </p>
@@ -35,11 +40,18 @@ const Success = ({ customerData, orderNumber }: SuccessProps) => {
             {customerData.imageUrl && (
               <div className="mt-4">
                 <p className="text-blue-800 font-medium mb-2">Sua foto foi salva com sucesso:</p>
-                <img 
-                  src={customerData.imageUrl} 
-                  alt="Foto enviada" 
-                  className="w-24 h-24 object-cover rounded-lg border mx-auto"
-                />
+                {customerData.imageUrls && customerData.imageUrls.length > 0 && (
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {customerData.imageUrls.map((url, index) => (
+                      <img 
+                        key={index}
+                        src={url} 
+                        alt={`Foto enviada ${index + 1}`} 
+                        className="w-20 h-20 object-cover rounded-lg border"
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -79,8 +91,8 @@ const Success = ({ customerData, orderNumber }: SuccessProps) => {
             <h3 className="font-semibold text-blue-900 mb-2">Próximos passos:</h3>
             <ul className="text-blue-800 text-left space-y-2">
               <li>• ✅ Pagamento confirmado com sucesso</li>
-              <li>• Nossa equipe iniciará a restauração da sua foto</li>
-              <li>• A foto restaurada será enviada em até 24h</li>
+              <li>• Nossa equipe iniciará a restauração das suas {selectedPlan.images} {selectedPlan.images === 1 ? 'foto' : 'fotos'}</li>
+              <li>• {selectedPlan.images === 1 ? 'A foto restaurada' : 'As fotos restauradas'} {selectedPlan.images === 1 ? 'será enviada' : 'serão enviadas'} em até 24h</li>
               <li>• Em caso de dúvidas, entre em contato conosco</li>
             </ul>
           </div>
