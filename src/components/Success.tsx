@@ -1,0 +1,85 @@
+import React from 'react';
+import { CheckCircle, Clock, Mail, MessageCircle } from 'lucide-react';
+import { CustomerData } from './CustomerForm';
+
+interface SuccessProps {
+  customerData: CustomerData;
+  orderNumber: string;
+}
+
+const Success = ({ customerData, orderNumber }: SuccessProps) => {
+  return (
+    <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="mb-6">
+            <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              Pedido Recebido!
+            </h2>
+            <p className="text-xl text-gray-600">
+              Aguardando confirmação do pagamento
+            </p>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+            <p className="text-green-800 font-semibold mb-2">
+              Número do pedido: #{orderNumber}
+            </p>
+            <p className="text-blue-700">
+              Guarde este número para acompanhar seu pedido
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-900 mb-3">Seus dados:</h3>
+              <p className="text-gray-600">{customerData.name}</p>
+              <p className="text-gray-600">{customerData.email}</p>
+              <p className="text-gray-600">{customerData.phone}</p>
+            </div>
+            
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-900 mb-3">Entrega:</h3>
+              <div className="flex items-center space-x-2 text-gray-600">
+                {customerData.deliveryMethod === 'email' ? (
+                  <Mail className="h-4 w-4" />
+                ) : (
+                  <MessageCircle className="h-4 w-4" />
+                )}
+                <span>
+                  Por {customerData.deliveryMethod === 'whatsapp' ? 'WhatsApp' : 'Email'}
+                </span>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-600 mt-1">
+                <Clock className="h-4 w-4" />
+                <span>Em até 24 horas</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h3 className="font-semibold text-blue-900 mb-2">Próximos passos:</h3>
+            <ul className="text-blue-800 text-left space-y-2">
+              <li>• Aguardamos a confirmação do seu pagamento</li>
+              <li>• Após confirmação, nossa equipe iniciará a restauração</li>
+              <li>• A foto restaurada será enviada em até 24h após confirmação</li>
+              <li>• Em caso de dúvidas, entre em contato conosco</li>
+            </ul>
+          </div>
+
+          <div className="mt-8">
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+            >
+              Fazer Novo Pedido
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Success;
