@@ -41,15 +41,19 @@ const Success = ({ customerData, orderNumber }: SuccessProps) => {
             
             <div className="text-left">
               <h3 className="font-semibold text-gray-900 mb-3">Entrega:</h3>
-              <div className="flex items-center space-x-2 text-gray-600">
-                {customerData.deliveryMethod === 'email' ? (
-                  <Mail className="h-4 w-4" />
-                ) : (
-                  <MessageCircle className="h-4 w-4" />
+              <div className="space-y-2">
+                {customerData.deliveryMethod.includes('email') && (
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <Mail className="h-4 w-4" />
+                    <span>Por Email</span>
+                  </div>
                 )}
-                <span>
-                  Por {customerData.deliveryMethod === 'whatsapp' ? 'WhatsApp' : 'Email'}
-                </span>
+                {customerData.deliveryMethod.includes('whatsapp') && (
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Por WhatsApp</span>
+                  </div>
+                )}
               </div>
               <div className="flex items-center space-x-2 text-gray-600 mt-1">
                 <Clock className="h-4 w-4" />

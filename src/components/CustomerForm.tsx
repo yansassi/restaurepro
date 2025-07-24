@@ -9,7 +9,7 @@ export interface CustomerData {
   name: string;
   email: string;
   phone: string;
-  deliveryMethod: 'email' | 'whatsapp';
+  deliveryMethod: string[];
 }
 
 const CustomerForm = ({ onSubmit }: CustomerFormProps) => {
@@ -17,15 +17,37 @@ const CustomerForm = ({ onSubmit }: CustomerFormProps) => {
     name: '',
     email: '',
     phone: '',
-    deliveryMethod: 'email'
+    deliveryMethod: []
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (formData.deliveryMethod.length === 0) {
+      alert('Por favor, selecione pelo menos um método de entrega.');
+      return;
+    }
     onSubmit(formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    
+    if (type === 'checkbox' && name === 'deliveryMethod') {
+      setFormData(prev => ({
+        ...prev,
+        deliveryMethod: checked 
+          ? [...prev.deliveryMethod, value]
+          : prev.deliveryMethod.filter(method => method !== value)
+      }));
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
+  };
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -56,7 +78,7 @@ const CustomerForm = ({ onSubmit }: CustomerFormProps) => {
                 name="name"
                 required
                 value={formData.name}
-                onChange={handleChange}
+                onChange={handleTextChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Digite seu nome completo"
               />
@@ -72,7 +94,7 @@ const CustomerForm = ({ onSubmit }: CustomerFormProps) => {
                 name="email"
                 required
                 value={formData.email}
-                onChange={handleChange}
+                onChange={handleTextChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="seu@email.com"
               />
@@ -88,7 +110,7 @@ const CustomerForm = ({ onSubmit }: CustomerFormProps) => {
                 name="phone"
                 required
                 value={formData.phone}
-                onChange={handleChange}
+                onChange={handleTextChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="(11) 99999-9999"
               />
@@ -96,19 +118,19 @@ const CustomerForm = ({ onSubmit }: CustomerFormProps) => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-4">
-                Como prefere receber sua foto restaurada?
+                Como prefere receber sua foto restaurada? (Pode escolher ambos)
               </label>
               <div className="grid grid-cols-2 gap-4">
                 <label className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
-                  formData.deliveryMethod === 'email' 
+                  formData.deliveryMethod.includes('email')
                     ? 'border-blue-500 bg-blue-50' 
                     : 'border-gray-200 hover:border-gray-300'
                 }`}>
                   <input
-                    type="radio"
+                    type="checkbox"
                     name="deliveryMethod"
                     value="email"
-                    checked={formData.deliveryMethod === 'email'}
+                    checked={formData.deliveryMethod.includes('email')}
                     onChange={handleChange}
                     className="sr-only"
                   />
@@ -119,15 +141,15 @@ const CustomerForm = ({ onSubmit }: CustomerFormProps) => {
                 </label>
 
                 <label className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
-                  formData.deliveryMethod === 'whatsapp' 
+                  formData.deliveryMethod.includes('whatsapp')
                     ? 'border-blue-500 bg-blue-50' 
                     : 'border-gray-200 hover:border-gray-300'
                 }`}>
                   <input
-                    type="radio"
+                    type="checkbox"
                     name="deliveryMethod"
                     value="whatsapp"
-                    checked={formData.deliveryMethod === 'whatsapp'}
+                    checked={formData.deliveryMethod.includes('whatsapp')}
                     onChange={handleChange}
                     className="sr-only"
                   />

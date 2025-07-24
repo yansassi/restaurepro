@@ -49,8 +49,10 @@ const PaymentSection = ({ customerData, selectedFile, onPaymentSuccess }: Paymen
               <p className="text-sm text-gray-600">{customerData.name}</p>
               <p className="text-sm text-gray-600">{customerData.email}</p>
               <p className="text-sm text-gray-600">{customerData.phone}</p>
-              <p className="text-sm text-blue-600 capitalize">
-                Entrega por {customerData.deliveryMethod === 'whatsapp' ? 'WhatsApp' : 'Email'}
+              <p className="text-sm text-blue-600">
+                Entrega por: {customerData.deliveryMethod.map(method => 
+                  method === 'whatsapp' ? 'WhatsApp' : 'Email'
+                ).join(' e ')}
               </p>
             </div>
 
