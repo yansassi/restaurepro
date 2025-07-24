@@ -10,6 +10,8 @@ export interface CustomerData {
   email: string;
   phone: string;
   deliveryMethod: string[];
+  imageUrl?: string;
+  id?: string;
 }
 
 const CustomerForm = ({ onSubmit }: CustomerFormProps) => {

@@ -54,6 +54,16 @@ const PaymentSection = ({ customerData, selectedFile, onPaymentSuccess }: Paymen
                   method === 'whatsapp' ? 'WhatsApp' : 'Email'
                 ).join(' e ')}
               </p>
+              {customerData.imageUrl && (
+                <div className="mt-3">
+                  <p className="text-sm font-medium text-gray-900 mb-2">Sua foto:</p>
+                  <img 
+                    src={customerData.imageUrl} 
+                    alt="Foto enviada" 
+                    className="w-20 h-20 object-cover rounded-lg border"
+                  />
+                </div>
+              )}
             </div>
 
             <div className="mt-6 space-y-3">

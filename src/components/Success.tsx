@@ -29,6 +29,16 @@ const Success = ({ customerData, orderNumber }: SuccessProps) => {
             <p className="text-blue-700">
               Guarde este número para acompanhar seu pedido
             </p>
+            {customerData.imageUrl && (
+              <div className="mt-4">
+                <p className="text-blue-800 font-medium mb-2">Sua foto foi salva com sucesso:</p>
+                <img 
+                  src={customerData.imageUrl} 
+                  alt="Foto enviada" 
+                  className="w-24 h-24 object-cover rounded-lg border mx-auto"
+                />
+              </div>
+            )}
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">

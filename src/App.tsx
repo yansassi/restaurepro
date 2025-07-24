@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { supabase } from './lib/supabase';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
@@ -36,8 +37,76 @@ function App() {
   };
 
   const handleFormSubmit = (data: CustomerData) => {
-    setCustomerData(data);
-    setCurrentStep('payment');
+    handleSupabaseSubmit(data);
+  };
+
+  const handleSupabaseSubmit = async (data: CustomerData) => {
+    if (!selectedFile) return;
+
+    try {
+      // 1. Insert customer data first
+      const { data: customerRecord, error: insertError } = await supabase
+        .from('customers')
+        .insert({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          delivery_method: data.deliveryMethod,
+          order_number: orderNumber
+        })
+        .select()
+        .single();
+
+      if (insertError) {
+        console.error('Error inserting customer:', insertError);
+        alert('Erro ao salvar dados. Tente novamente.');
+        return;
+      }
+
+      // 2. Upload image to Supabase Storage
+      const fileExt = selectedFile.name.split('.').pop();
+      const fileName = `${customerRecord.id}/original.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage
+        .from('photos')
+        .upload(fileName, selectedFile);
+
+      if (uploadError) {
+        console.error('Error uploading image:', uploadError);
+        alert('Erro ao fazer upload da imagem. Tente novamente.');
+        return;
+      }
+
+      // 3. Get public URL for the uploaded image
+      const { data: urlData } = supabase.storage
+        .from('photos')
+        .getPublicUrl(fileName);
+
+      // 4. Update customer record with image URL
+      const { error: updateError } = await supabase
+        .from('customers')
+        .update({ image_url: urlData.publicUrl })
+        .eq('id', customerRecord.id);
+
+      if (updateError) {
+        console.error('Error updating image URL:', updateError);
+        // Continue anyway since the main data is saved
+      }
+
+      // 5. Set customer data with image URL and proceed
+      const customerDataWithImage: CustomerData = {
+        ...data,
+        imageUrl: urlData.publicUrl,
+        id: customerRecord.id
+      };
+
+      setCustomerData(customerDataWithImage);
+      setCurrentStep('payment');
+
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      alert('Erro inesperado. Tente novamente.');
+    }
   };
 
   const handlePaymentSuccess = () => {
