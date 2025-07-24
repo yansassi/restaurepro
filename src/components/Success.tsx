@@ -34,8 +34,8 @@ const Success = ({ customerData, selectedPlan, orderNumber }: SuccessProps) => {
             <p className="text-green-700 font-medium">
               ✅ Pagamento confirmado com sucesso!
             </p>
-            <p className="text-blue-700 mt-2">
-              Guarde este número para acompanhar seu pedido. Nossa equipe iniciará a restauração em breve.
+            <p className="text-green-700 mt-2">
+              Nossa equipe já iniciou a restauração das suas fotos!
             </p>
             {customerData.imageUrl && (
               <div className="mt-4">
@@ -91,9 +91,9 @@ const Success = ({ customerData, selectedPlan, orderNumber }: SuccessProps) => {
             <h3 className="font-semibold text-blue-900 mb-2">Próximos passos:</h3>
             <ul className="text-blue-800 text-left space-y-2">
               <li>• ✅ Pagamento confirmado com sucesso</li>
-              <li>• Nossa equipe iniciará a restauração das suas {selectedPlan.images} {selectedPlan.images === 1 ? 'foto' : 'fotos'}</li>
+              <li>• ✅ Nossa equipe já iniciou a restauração das suas {selectedPlan.images} {selectedPlan.images === 1 ? 'foto' : 'fotos'}</li>
               <li>• {selectedPlan.images === 1 ? 'A foto restaurada' : 'As fotos restauradas'} {selectedPlan.images === 1 ? 'será enviada' : 'serão enviadas'} em até 24h</li>
-              <li>• Em caso de dúvidas, entre em contato conosco</li>
+              <li>• Você receberá por email e/ou WhatsApp conforme sua preferência</li>
             </ul>
           </div>
 

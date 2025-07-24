@@ -9,10 +9,11 @@ import PlanSelection from './components/PlanSelection';
 import UploadSection from './components/UploadSection';
 import CustomerForm, { CustomerData } from './components/CustomerForm';
 import PaymentSection from './components/PaymentSection';
+import WaitingConfirmation from './components/WaitingConfirmation';
 import Success from './components/Success';
 import Footer from './components/Footer';
 
-type Step = 'landing' | 'planSelection' | 'upload' | 'form' | 'payment' | 'success';
+type Step = 'landing' | 'planSelection' | 'upload' | 'form' | 'payment' | 'waiting' | 'success';
 
 function App() {
   const [currentStep, setCurrentStep] = useState<Step>('landing');
@@ -135,6 +136,10 @@ function App() {
   };
 
   const handlePaymentSuccess = () => {
+    setCurrentStep('waiting');
+  };
+
+  const handlePaymentConfirmed = () => {
     setCurrentStep('success');
   };
 
@@ -160,6 +165,15 @@ function App() {
             selectedFiles={selectedFiles}
             selectedPlan={selectedPlan!}
             onPaymentSuccess={handlePaymentSuccess}
+          />
+        );
+      case 'waiting':
+        return (
+          <WaitingConfirmation
+            customerData={customerData!}
+            selectedPlan={selectedPlan!}
+            orderNumber={orderNumber}
+            onPaymentConfirmed={handlePaymentConfirmed}
           />
         );
       case 'success':
