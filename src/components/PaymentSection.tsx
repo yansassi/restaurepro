@@ -25,65 +25,9 @@ const PaymentSection = ({ customerData, selectedFile, onPaymentSuccess }: Paymen
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Resumo do Pedido */}
-          <div className="bg-gray-50 rounded-xl p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Resumo do Pedido</h3>
-            
-            <div className="space-y-4">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Restauração de 1 foto</span>
-                <span className="font-semibold">R$ 5,00</span>
-              </div>
-              
-              <hr className="border-gray-200" />
-              
-              <div className="flex justify-between text-lg font-semibold">
-                <span>Total</span>
-                <span className="text-blue-600">R$ 5,00</span>
-              </div>
-            </div>
-
-            <div className="mt-6 p-4 bg-white rounded-lg">
-              <h4 className="font-medium text-gray-900 mb-2">Seus dados:</h4>
-              <p className="text-sm text-gray-600">{customerData.name}</p>
-              <p className="text-sm text-gray-600">{customerData.email}</p>
-              <p className="text-sm text-gray-600">{customerData.phone}</p>
-              <p className="text-sm text-blue-600">
-                Entrega por: {customerData.deliveryMethod.map(method => 
-                  method === 'whatsapp' ? 'WhatsApp' : 'Email'
-                ).join(' e ')}
-              </p>
-              {customerData.imageUrl && (
-                <div className="mt-3">
-                  <p className="text-sm font-medium text-gray-900 mb-2">Sua foto:</p>
-                  <img 
-                    src={customerData.imageUrl} 
-                    alt="Foto enviada" 
-                    className="w-20 h-20 object-cover rounded-lg border"
-                  />
-                </div>
-              )}
-            </div>
-
-            <div className="mt-6 space-y-3">
-              <div className="flex items-center space-x-2 text-green-600">
-                <Shield className="h-4 w-4" />
-                <span className="text-sm">Pagamento 100% seguro</span>
-              </div>
-              <div className="flex items-center space-x-2 text-blue-600">
-                <Clock className="h-4 w-4" />
-                <span className="text-sm">Entrega em até 24 horas</span>
-              </div>
-              <div className="flex items-center space-x-2 text-purple-600">
-                <CheckCircle className="h-4 w-4" />
-                <span className="text-sm">Garantia de satisfação</span>
-              </div>
-            </div>
-          </div>
-
+        <div className="max-w-4xl mx-auto">
           {/* Pagamento */}
-          <div className="bg-white border border-gray-200 rounded-xl p-6">
+          <div className="bg-white rounded-xl shadow-lg p-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-6">
               <ExternalLink className="h-6 w-6 inline mr-2" />
               Pagamento
@@ -102,7 +46,7 @@ const PaymentSection = ({ customerData, selectedFile, onPaymentSuccess }: Paymen
                 <iframe
                   src="https://pay.cakto.com.br/n2typzf_493515"
                   width="100%"
-                  height="600"
+                  height="900"
                   frameBorder="0"
                   title="Pagamento Cakto"
                   className="w-full"
