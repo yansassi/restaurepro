@@ -26,8 +26,11 @@ const Success = ({ customerData, orderNumber }: SuccessProps) => {
             <p className="text-green-800 font-semibold mb-2">
               Número do pedido: #{orderNumber}
             </p>
-            <p className="text-blue-700">
-              Guarde este número para acompanhar seu pedido
+            <p className="text-green-700 font-medium">
+              ✅ Pagamento confirmado com sucesso!
+            </p>
+            <p className="text-blue-700 mt-2">
+              Guarde este número para acompanhar seu pedido. Nossa equipe iniciará a restauração em breve.
             </p>
             {customerData.imageUrl && (
               <div className="mt-4">
@@ -75,9 +78,9 @@ const Success = ({ customerData, orderNumber }: SuccessProps) => {
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
             <h3 className="font-semibold text-blue-900 mb-2">Próximos passos:</h3>
             <ul className="text-blue-800 text-left space-y-2">
-              <li>• Aguardamos a confirmação do seu pagamento</li>
-              <li>• Após confirmação, nossa equipe iniciará a restauração</li>
-              <li>• A foto restaurada será enviada em até 24h após confirmação</li>
+              <li>• ✅ Pagamento confirmado com sucesso</li>
+              <li>• Nossa equipe iniciará a restauração da sua foto</li>
+              <li>• A foto restaurada será enviada em até 24h</li>
               <li>• Em caso de dúvidas, entre em contato conosco</li>
             </ul>
           </div>

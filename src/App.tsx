@@ -16,7 +16,11 @@ function App() {
   const [currentStep, setCurrentStep] = useState<Step>('landing');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [customerData, setCustomerData] = useState<CustomerData | null>(null);
-  const [orderNumber] = useState(() => Math.random().toString(36).substr(2, 9).toUpperCase());
+  const [orderNumber] = useState(() => {
+    // Try to get order number from URL first, then generate new one
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('order') || Math.random().toString(36).substr(2, 9).toUpperCase();
+  });
 
   const handleStartClick = () => {
     setCurrentStep('upload');
