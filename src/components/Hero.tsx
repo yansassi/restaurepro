@@ -9,6 +9,40 @@ const Hero = ({ onStartClick }: HeroProps) => {
   return (
     <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Seção Antes e Depois */}
+        <div className="text-center mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+            Veja a Diferença que Fazemos
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-red-100 px-4 py-2">
+                <span className="text-red-800 font-semibold text-sm">ANTES</span>
+              </div>
+              <div className="p-4">
+                <img 
+                  src="/fotoantiga.jpg" 
+                  alt="Foto antiga antes da restauração" 
+                  className="w-full h-64 object-cover rounded-lg"
+                />
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-green-100 px-4 py-2">
+                <span className="text-green-800 font-semibold text-sm">DEPOIS</span>
+              </div>
+              <div className="p-4">
+                <img 
+                  src="/restaurada.jpg" 
+                  alt="Foto restaurada depois do tratamento" 
+                  className="w-full h-64 object-cover rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Reviva suas
