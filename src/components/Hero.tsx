@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Clock, Award } from 'lucide-react';
+import { Shield, Clock, Award, ArrowRight, Sparkles } from 'lucide-react';
 
 interface HeroProps {
   onStartClick: () => void;
@@ -7,77 +7,135 @@ interface HeroProps {
 
 const Hero = ({ onStartClick }: HeroProps) => {
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Seção Antes e Depois */}
-        <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
-            Veja a Diferença que Fazemos
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="bg-red-100 px-4 py-2">
-                <span className="text-red-800 font-semibold text-sm">ANTES</span>
-              </div>
-              <div className="p-4">
-                <img 
-                  src="/fotoantiga.jpg" 
-                  alt="Foto antiga antes da restauração" 
-                  className="w-full h-64 object-cover rounded-lg"
-                />
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="bg-green-100 px-4 py-2">
-                <span className="text-green-800 font-semibold text-sm">DEPOIS</span>
-              </div>
-              <div className="p-4">
-                <img 
-                  src="/restaurada.jpg" 
-                  alt="Foto restaurada depois do tratamento" 
-                  className="w-full h-64 object-cover rounded-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+    <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10"></div>
+      <div className="absolute top-0 right-0 -translate-y-12 translate-x-12">
+        <div className="w-72 h-72 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
+      </div>
+      <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12">
+        <div className="w-72 h-72 bg-gradient-to-br from-indigo-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
+      </div>
 
-        <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        {/* Main content */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <Sparkles className="h-4 w-4" />
+            <span>Tecnologia de IA + Toque Artesanal</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
             Reviva suas
-            <span className="text-blue-600"> Memórias</span>
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block">
+              Memórias
+            </span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Restauramos suas fotos antigas com tecnologia avançada e cuidado artesanal. 
-            Transforme suas lembranças desbotadas em imagens vibrantes novamente.
+          
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+            Transforme suas fotos antigas e desbotadas em lembranças vibrantes com nossa 
+            tecnologia avançada de restauração e o cuidado de especialistas.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <div className="flex items-center space-x-2 text-green-600">
-              <Shield className="h-5 w-5" />
-              <span className="font-medium">100% Seguro</span>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <div className="flex items-center space-x-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <Shield className="h-5 w-5 text-green-600" />
+              <span className="font-medium text-gray-700">100% Seguro</span>
             </div>
-            <div className="flex items-center space-x-2 text-blue-600">
-              <Clock className="h-5 w-5" />
-              <span className="font-medium">Entrega em 24h</span>
+            <div className="flex items-center space-x-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <Clock className="h-5 w-5 text-blue-600" />
+              <span className="font-medium text-gray-700">Entrega em 24h</span>
             </div>
-            <div className="flex items-center space-x-2 text-purple-600">
-              <Award className="h-5 w-5" />
-              <span className="font-medium">Garantia de Satisfação</span>
+            <div className="flex items-center space-x-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm">
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+              <Award className="h-5 w-5 text-purple-600" />
+              <span className="font-medium text-gray-700">Satisfação Garantida</span>
             </div>
           </div>
 
           <button
             onClick={onStartClick}
-            className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xl font-semibold px-10 py-5 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1"
           >
-            Restaurar Minha Foto • R$ 5,00
+            <span>Restaurar Minha Foto</span>
+            <div className="flex items-center space-x-2">
+              <span className="text-lg">•</span>
+              <span className="bg-white/20 px-3 py-1 rounded-full text-sm">R$ 5,00</span>
+            </div>
+            <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </button>
           
-          <p className="text-sm text-gray-500 mt-4">
-            Pagamento seguro • Sem mensalidades • Satisfação garantida
+          <p className="text-sm text-gray-500 mt-6">
+            Pagamento seguro • Sem mensalidades • Garantia de satisfação
           </p>
+        </div>
+
+        {/* Before/After Section - Redesigned */}
+        <div className="relative">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Veja a <span className="text-blue-600">Transformação</span>
+            </h2>
+            <p className="text-lg text-gray-600">
+              Resultados reais de nossos clientes
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="group relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl">
+                <div className="bg-gradient-to-r from-red-500 to-orange-500 px-6 py-3">
+                  <span className="text-white font-bold text-sm tracking-wide">ANTES</span>
+                </div>
+                <div className="p-6">
+                  <img 
+                    src="/fotoantiga.jpg" 
+                    alt="Foto antiga antes da restauração" 
+                    className="w-full h-80 object-cover rounded-xl"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <div className="group relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl">
+                <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3">
+                  <span className="text-white font-bold text-sm tracking-wide">DEPOIS</span>
+                </div>
+                <div className="p-6">
+                  <img 
+                    src="/restaurada.jpg" 
+                    alt="Foto restaurada depois do tratamento" 
+                    className="w-full h-80 object-cover rounded-xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">2.847+</div>
+              <div className="text-gray-600">Fotos Restauradas</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">4.9★</div>
+              <div className="text-gray-600">Avaliação Média</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">24h</div>
+              <div className="text-gray-600">Tempo de Entrega</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">100%</div>
+              <div className="text-gray-600">Satisfação</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
