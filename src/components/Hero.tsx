@@ -19,11 +19,34 @@ const Hero = ({ onStartClick }: HeroProps) => {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        {/* Interactive Before/After Comparison - First Thing Visible */}
+        <div className="relative mb-20">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Sparkles className="h-4 w-4" />
+              <span>Veja a Transformação</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Resultados <span className="text-blue-600">Reais</span> de Nossos Clientes
+            </h2>
+            <p className="text-lg text-gray-600">
+              Arraste para ver o resultado • Exemplo real de cliente
+            </p>
+          </div>
+          
+          <ImageComparisonSlider
+            beforeImage="/fotoantiga.jpg"
+            afterImage="/restaurada.jpg"
+            beforeLabel="ANTES"
+            afterLabel="DEPOIS"
+          />
+        </div>
+
         {/* Main content */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
-            <Sparkles className="h-4 w-4" />
-            <span>Tecnologia de IA + Toque Artesanal</span>
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <Award className="h-4 w-4" />
+            <span>Satisfação Garantida • Entrega 24h</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
@@ -73,42 +96,23 @@ const Hero = ({ onStartClick }: HeroProps) => {
           </p>
         </div>
 
-        {/* Interactive Before/After Comparison */}
-        <div className="relative">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Veja a <span className="text-blue-600">Transformação</span>
-            </h2>
-            <p className="text-lg text-gray-600">
-              Arraste para ver o resultado • Exemplo real de cliente
-            </p>
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-4xl mx-auto">
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">2.847+</div>
+            <div className="text-gray-600">Fotos Restauradas</div>
           </div>
-          
-          <ImageComparisonSlider
-            beforeImage="/fotoantiga.jpg"
-            afterImage="/restaurada.jpg"
-            beforeLabel="ANTES"
-            afterLabel="DEPOIS"
-          />
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">2.847+</div>
-              <div className="text-gray-600">Fotos Restauradas</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">4.9★</div>
-              <div className="text-gray-600">Avaliação Média</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">24h</div>
-              <div className="text-gray-600">Tempo de Entrega</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">100%</div>
-              <div className="text-gray-600">Satisfação</div>
-            </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">4.9★</div>
+            <div className="text-gray-600">Avaliação Média</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">24h</div>
+            <div className="text-gray-600">Tempo de Entrega</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">100%</div>
+            <div className="text-gray-600">Satisfação</div>
           </div>
         </div>
       </div>
